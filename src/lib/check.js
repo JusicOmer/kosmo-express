@@ -53,7 +53,7 @@ export async function checkSolution(task, sql) {
   catch (e) { return { internal: String(e.message || e) }; }
   try {
     const user = await isolated(kind, (s) => runForCheck(s, sql, task), sql, task.seed);
-    return { user, cmp: compare(user, sol, task) };
+    return { user, sol, cmp: compare(user, sol, task) };
   } catch (e) {
     return { error: String(e.message || e) };
   }
